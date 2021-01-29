@@ -1,0 +1,55 @@
+<div class="option-title inblock fullwid">
+    <div class="tab middle center">
+        <h2>Preencha as informações abaixo</h2>                
+    </div>
+</div>
+<div class="email inblock fullwid">
+    <div class="tab middle center">
+        <input type="text" class="assunto" placeholder="Assunto" id="assunto">
+    </div>
+</div>
+<div class="email inblock fullwid">
+    <div class="tab middle center">
+        <textarea id="textarea" class="textarea" placeholder="Conte-nos um pouco sobre o que você precisa..."></textarea>
+    </div>
+</div>
+<div class="email inblock fullwid">
+    <div class="tab middle center">
+        <input type="button" value="Enviar" class="sendEmail">
+    </div>
+</div>
+<script class="sendEmail">
+    buscarCompras(getDoc())
+    .then(function(compras){
+        return compras;
+    })
+    .then(function(compras2){
+        $('.sendEmail').onclick = () => {
+        verificarFormulario(compras2)
+    }
+})
+    function verificarFormulario(compras2){
+        if($('#assunto').value && $('#textarea').value != 'null'){
+            let assunto = $('#assunto').value;
+            let body = $('.textarea').value;
+            let email = compras2[0].email;
+            let name = compras2[0].name;
+            wrapContent.innerHTML = '';
+            loading.style.display = 'block';
+            ajax = new XMLHttpRequest
+            ajax.open('GET',`https://deatly.com/cliente/source/email.php?assunto=${assunto}&body=${body}&email=${email}&name=${name}`)
+            ajax.onloadend = () => {
+                if(ajax.response == 'true'){
+                    loading.style.display = 'none';
+                    wrapContent.innerHTML = '<div class="option-title inblock fullwid"><div class="tab middle center"><h2 style="margin-bottom: 15px; text-align: left;">Email enviado com sucesso</h2><p style="margin-bottom: 15px; text-align: justify;">Agradecemos seu contato. Você receberá uma resposta em até 3 dias úteis.</p></div></div>'
+                }else{
+                    loading.style.display = 'none';
+                    wrapContent.innerHTML = '<div class="option-title inblock fullwid"><div class="tab middle center"><h2 style="margin-bottom: 15px; text-align: left;">Ops, algo deu errado...</h2><p style="margin-bottom: 15px; text-align: justify;">Um erro não identificado ocorreu. Tente novamente ou entre em contato através de nosso WhatsApp.</p></div></div>'
+                }
+            }
+            ajax.send()
+        }else{
+            alert('Preencha o formulário')
+        }
+    }
+</script>  

@@ -1,0 +1,74 @@
+<div class="option-title inblock fullwid">
+    <div class="tab middle center">
+        <h2>Preencha as informações abaixo</h2>
+    </div>
+</div>
+<div class="email inblock halfwid">
+    <div class="tab middle center">
+        <select type="text" id="selectOrdem" name="installments" class="assunto">
+            <option>Selecione a ordem do pedido</option>
+        </select>
+    </div>
+</div>
+<div class="email inblock halfwid">
+    <div class="tab middle center">
+        <select type="text" id="selectAct" name="installments" class="assunto">
+            <option value="null">Selecione o que você deseja fazer</option>
+            <option value="trocar">Trocar</option>
+            <option value="desistir">Desistir</option>
+        </select>
+    </div>
+</div>
+<div class="email inblock fullwid">
+    <div class="tab middle center">
+        <textarea class="textarea" placeholder="Conte-nos um pouco sobre suas razões ou insira aqui alguma informação que acredite ser relevante."></textarea>
+    </div>
+</div>
+<div class="email inblock fullwid">
+    <div class="tab middle center">
+        <input type="button" value="Solicitar" class="sendEmail">
+    </div>
+</div>
+<script class="callbackScript">
+    buscarCompras(getDoc())
+    .then(function(compras){
+        $('#selectOrdem').innerHTML = '<option value="null">Selecione a ordem do pedido</option>'
+        for(i=0; i < compras.length; i++){
+            currentSelect = $('#selectOrdem').innerHTML;
+            $('#selectOrdem').innerHTML = currentSelect+'<option value="'+compras[i].order+'">'+compras[i].order+' - '+compras[i].product_name+'</option>';
+        }
+        return compras;
+    })
+    .then(function(compras2){
+        $('.sendEmail').onclick = () => {
+        verificarFormulario(compras2)
+    }
+})
+
+    function verificarFormulario(compras2){
+        if($('#selectOrdem').value && $('#selectAct').value != 'null'){
+            let ordem = $('#selectOrdem').value;
+            let act = $('#selectAct').value;
+            let body = $('.textarea').value;
+            let email = compras2[0].email;
+            let name = compras2[0].name;
+            wrapContent.innerHTML = '';
+            loading.style.display = 'block';
+            ajax = new XMLHttpRequest
+            ajax.open('GET',`https://deatly.com/cliente/source/callback.php?order=${ordem}&act=${act}&body=${body}&email=${email}&name=${name}`)
+            ajax.onloadend = () => {
+                if(ajax.response == 'true'){
+                    loading.style.display = 'none';
+                    wrapContent.innerHTML = '<div class="option-title inblock fullwid"><div class="tab middle center"><h2 style="margin-bottom: 15px; text-align: left;">Email enviado com sucesso</h2><p style="margin-bottom: 15px; text-align: justify;">Agradecemos seu contato. Você receberá uma resposta em até 3 dias úteis.</p></div></div>'
+                }else{
+                    loading.style.display = 'none';
+                    wrapContent.innerHTML = '<div class="option-title inblock fullwid"><div class="tab middle center"><h2 style="margin-bottom: 15px; text-align: left;">Ops, algo deu errado...</h2><p style="margin-bottom: 15px; text-align: justify;">Um erro não identificado ocorreu. Tente novamente ou entre em contato através de nosso WhatsApp.</p></div></div>'
+                }
+
+            }
+            ajax.send()
+        }else{
+            alert('Selecione a ordem do pedido e a ação que desejas realizar.')
+        }
+    }
+</script>  

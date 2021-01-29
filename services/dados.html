@@ -1,0 +1,51 @@
+<style>
+    .botao{
+        padding: 15px 25px;
+        border: none;
+        outline: none;
+        background-color: black;
+        color: white;
+        cursor: pointer
+    }
+</style>
+<div class="option-title inblock fullwid">
+    <div class="tab middle center">
+        <h2 style="margin-bottom: 15px; text-align: left;">Confirme sua requisição</h2>
+        <p style="margin-bottom: 15px; text-align: justify;">Lucas, você deseja enviar uma cópia de suas informações para seu email de cadastro?</p>
+        <input class="botao" type="button" value="Sim, enviar!">
+    </div>
+</div>
+<script class="scriptDados">
+    buscarCompras(getDoc())
+    .then(function(compras){
+        info = compras
+        $('.botao').onclick = () => {
+        let name = info[0].name;
+        let cpf = info[0].document;
+        let email = info[0].email;
+        let phone = info[0].area+' '+info[0].phone;
+        let rua = info[0].street;
+        let number = info[0].number;
+        let bairro = info[0].neighborhood;
+        let complemento = info[0].name;
+        let cidade = info[0].city;
+        let estado = info[0].state;
+        let cep = info[0].zip;
+        wrapContent.innerHTML = '';
+        loading.style.display = 'block';
+        ajax = new XMLHttpRequest
+        ajax.open('GET',`https://deatly.com/cliente/source/dados.php?name=${name}&cpf=${cpf}&email=${email}&phone=${phone}&rua=${rua}&number=${number}&bairro=${bairro}&complemento=${complemento}&cidade=${cidade}&estado=${estado}&cep=${cep}`)
+        ajax.onloadend = () => {
+            if(ajax.response == 'true'){  
+                loading.style.display = 'none';
+                wrapContent.innerHTML = '<div class="option-title inblock fullwid"><div class="tab middle center"><h2 style="margin-bottom: 15px; text-align: left;">Email enviado com sucesso</h2><p style="margin-bottom: 15px; text-align: justify;">Seus dados já estão disponíveis em seu email. Caso não encontre, verifique sua caixa de spam.</p></div></div>'
+            }else{
+                loading.style.display = 'none';
+                wrapContent.innerHTML = '<div class="option-title inblock fullwid"><div class="tab middle center"><h2 style="margin-bottom: 15px; text-align: left;">Ops, algo deu errado...</h2><p style="margin-bottom: 15px; text-align: justify;">Um erro não identificado ocorreu. Tente novamente ou entre em contato através de nosso WhatsApp.</p></div></div>'
+            }
+        }
+        ajax.send()
+    }
+
+})
+</script>  

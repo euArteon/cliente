@@ -1,0 +1,70 @@
+<div class="option-title inblock fullwid">
+    <div class="tab middle center">
+        <h2>Toque no bloco de informações para copiá-las</h2>                
+    </div>
+</div>
+<div class="shipping-code-container" id="shippingcode">
+    <div class="shipping-code inblock halfwid">            
+        <div class="tab middle center">                
+            <h3>Código de Rastreio</h3> 
+            <p id="i1">Carregando</p>
+            <textarea style="display:none; visibility: 0" id="i-1" cols="30" rows="11">Carregando</textarea>
+        </div>
+    </div>
+    <div class="shipping-code inblock halfwid">            
+        <div class="tab middle center">               
+            <h3>Status da Entrega</h3>
+            <p id="i2">Carregando</p>
+        </div>
+    </div>
+</div>
+<div class="selecionado inblock halfwid" id="orderdata">            
+    <div class="tab middle center">
+        <h3>Produto</h3>
+            <p style="text-transform: capitalize;" id="i3">Carregando</p>
+        <h3>Ordem</h3> 
+            <p id="i4">Carregando</p>
+        <h3>Data da Compra</h3>
+            <p id="i5">Carregando</p>
+        <h3>Unidades</h3>
+            <p id="i6">Carregando</p>
+        <h3>Total</h3>
+            <p id="i7">Carregando</p>
+        <textarea style="display:none; visibility: 0" id="i-3-7" cols="30" rows="11">
+            Produto: Carregando
+            Ordem: Carregando
+            Data da Compra: Carregando
+            Unidades: Carregando
+            Total: Carregando
+        </textarea>
+    </div>
+</div>        
+<div class="selecionado inblock halfwid" id="paymentdata">
+    <div class="tab middle center">
+        <h3>ID do Pagamento</h3> 
+            <p id="i8">Carregando</p>
+        <h3>Valor Pago</h3>
+            <p id="i9">Carregando</p>
+        <h3>Método de Pagamento</h3>
+            <p id="i10">Carregando</p>
+        <h3>Parcelas</h3>
+            <p id="i11">Carregando</p>
+        <h3>Status do Pagamento</h3>
+            <p id="i12">Carregando</p>
+        <textarea style="display:none; visibility: 0" id="i-8-12" cols="30" rows="11">ID do Pagamento: Carregando
+            Valor Pago: Carregando
+            Método de Pagamento: Carregando
+            Parcelas: Carregando
+            Status do Pagamento: Carregando
+        </textarea>
+    </div>
+</div>
+<div class="selecionado inblock halfwid" id="shippingdata">            
+    <div class="tab middle center">
+        <h3>Dados de Entrega</h3>
+            <p>Não exibimos informações pessoais de nossos clientes em nossos sistemas.</p>
+            <p>No entanto, você pode receber uma cópia de todas as informações que possuimos no seu email tocando aqui.</p>
+    </div>
+</div>  
+<div class="space"></div>
+<script class="scriptOrdem">function copiar(insert){let info = document.querySelector(insert);info.style.display = "block";info.select();document.execCommand("copy");info.style.display = "none";alert("Infomações copiadas com sucesso.")}$("#shippingcode").onclick=()=>{copiar("#i-1");};$("#orderdata").onclick=()=>{copiar("#i-3-7");};$("#paymentdata").onclick=()=>{copiar("#i-8-12");};$("#shippingdata").onclick=()=>{loading.style.display = "block";ajax = new XMLHttpRequest;ajax.open("GET","./services/dados.html");ajax.onloadend=()=>{setResponse(); loadScript('scriptDados')};ajax.send();}</script>

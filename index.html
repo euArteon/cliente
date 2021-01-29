@@ -1,0 +1,155 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0">
+    <link rel="icon" href="https://deatly.com/checkout/images/icons/fav.webp">
+    <link rel="stylesheet" href="style.css">
+    <title>Deatly - Clientes</title>
+</head>
+<body>
+    <div class="login">
+        <div class="logo-content">
+            <img src="images/branding/logo.jpg" class="login-animate">
+        </div>
+    </div>
+<div class="sombra" style="display: none;"></div>
+<div class="wrap" style="display: none;">
+    <div class="close" onclick="fecharWrap()">X</div>
+    <section id="loading">
+        <div class="lds-ring"><div></div><div></div><div></div><div></div></div>
+    </section>
+    <div class="wrap-content">
+    </div>
+</div>
+<div class="mobile-header hidden-desktop">
+    <div class="mobile-grid">
+        <div class="mobile-content">
+            <img src="images/branding/logotype.png" alt="" srcset="">
+        </div>          
+    </div>
+    <div class="mobile-grid">      
+        <div class="mobile-content">
+
+        </div>          
+    </div>
+</div>
+<div class="sidebar">
+    <div class="container">
+        <div class="sidebar-grid">
+            <div class="sidebar-row-logo">      
+                <div class="sidebar-logo-content">
+                    <img src="images/branding/logotype.png" alt="" srcset="">
+                </div>          
+            </div>
+            <div class="sidebar-row-cliente">
+                <div class="sidebar-cliente-content">
+                    <p>Área do Cliente</p>
+                </div>
+            </div>
+            <div class="menu">
+                <div class="menu-row" id="comprasSB">
+                    <div class="menu-icon">
+                        <div class="menu-icon-content">        
+                            <img src="images/icons/bag.png" alt="">
+                        </div>
+                    </div>
+                    <div class="menu-option">
+                        <div class="menu-option-content">
+                            <p>Minhas compras</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="menu-row" id="rastreioSB">
+                    <div class="menu-icon">
+                        <div class="menu-icon-content">        
+                            <img src="images/icons/truck.png" alt="">
+                        </div>
+                    </div>
+                    <div class="menu-option">
+                        <div class="menu-option-content">
+                            <p>Rastreamento</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="menu-row" id="atendimentoSB">
+                    <div class="menu-icon">
+                        <div class="menu-icon-content">        
+                            <img src="images/icons/call.png" alt="">
+                        </div>
+                    </div>
+                    <div class="menu-option">
+                        <div class="menu-option-content">
+                            <p>Atendimento</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="menu-row" id="trocasSB">
+                    <div class="menu-icon">
+                        <div class="menu-icon-content">        
+                            <img src="images/icons/exchange.png" alt="">
+                        </div>
+                    </div>
+                    <div class="menu-option">
+                        <div class="menu-option-content">
+                            <p>Trocas</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="menu-row" id="desistenciasSB">
+                    <div class="menu-icon">
+                        <div class="menu-icon-content">        
+                            <img src="images/icons/givenup.png" alt="">
+                        </div>
+                    </div>
+                    <div class="menu-option">
+                        <div class="menu-option-content">
+                            <p>Desistências</p>
+                        </div>
+                    </div>
+                </div>                
+            </div>
+        </div>
+    </div>
+</div>
+<div class="main">
+    <div class="welcome">
+        <div class="welcome-title">
+            <div class="welcome-content">
+                <p>Do que você precisa nesse momento?</p>
+            </div>
+        </div>
+        <div class="exit">
+            <div class="exit-content">
+                <input type="button" value="Sair" id="exit">
+            </div>
+        </div>
+    </div>
+    <div class="options">
+        <div class="alert">        
+        </div>
+        <div class="option-grid" id="rastreio">
+            <div class="option-content">
+                <h2>Rastrear Meu<br/>Pedido</h2>
+            </div>
+        </div>
+        <div class="option-grid" id="compras">
+            <div class="option-content">
+                <h2>Visualizar Minhas<br/>Compras</h2>
+            </div>
+        </div>
+        <div class="option-grid" id="atendimento">
+            <div class="option-content">
+                <h2 class="break">Solicitar Atendimento</h2>
+            </div>
+        </div>
+        <div class="option-grid" id="outro">
+            <div class="option-content">
+                <h2>Outro</h2>
+            </div>
+        </div>
+    </div>
+</div>
+<script src="deatly.js"></script>
+</body>
+</html>

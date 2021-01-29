@@ -1,0 +1,50 @@
+<div class="option-title inblock fullwid">
+    <div class="tab middle center">
+        <h2>Selecione a opção que melhor atenda sua necessidade</h2>                
+    </div>
+</div>
+<div class="outro inblock halfwid" id="meusdados">
+    <div class="tab middle center">
+        <h3>Meus dados</h3>           
+    </div>
+</div>
+<div class="outro inblock halfwid" id="trocas">
+    <div class="tab middle center">
+        <h3>Trocas</h3>
+    </div>
+</div>
+<div class="outro inblock halfwid" id="desistencias">
+    <div class="tab middle center">
+        <h3>Desistências</h3>
+    </div>
+</div>
+<div class="space"></div>
+<script class="scriptOutro">
+    $('#meusdados').onclick = () => {
+        ajax = new XMLHttpRequest;
+        ajax.open('GET','./services/dados.html')
+        ajax.onloadend = () => {
+            setResponse()
+            loadScript('scriptDados')
+        }
+        ajax.send()
+    }
+    $('#trocas').onclick = () => {
+        ajax = new XMLHttpRequest;
+        ajax.open('GET','./services/callback.html')
+        ajax.onloadend = () => {
+            setResponse()
+            loadScript('callbackScript')
+        }
+        ajax.send()
+    }
+    $('#desistencias').onclick = () => {
+        ajax = new XMLHttpRequest;
+        ajax.open('GET','./services/callback.html')
+        ajax.onloadend = () => {
+            setResponse()
+            loadScript('callbackScript')
+        }
+        ajax.send()
+    }
+</script>

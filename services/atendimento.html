@@ -1,0 +1,33 @@
+<div class="option-title inblock fullwid">
+    <div class="tab middle center">
+        <h2>Selecione a opção que melhor atenda sua necessidade</h2>                
+    </div>
+</div>
+<div class="atendimento inblock halfwid" id="whatsapp">
+    <div class="tab middle center">
+        <h3>WhatsApp</h3>
+        <p>Respostas em até 2 horas</p>
+    </div>
+</div>
+<div class="atendimento inblock halfwid" id="email">
+    <div class="tab middle center">
+        <h3>E-mail</h3>
+        <p>Respostas em até 3 dias</p>
+    </div>
+</div>
+<script class="scriptAtendimento">
+    $("#whatsapp").onclick = () => {
+        mensagem = 'https://api.whatsapp.com/send?phone=5565981758763&text=Ol%C3%A1%2C%20estou%20precisando%20de%20ajuda%2C%20poderia%20me%20auxiliar%3F';
+        window.open(mensagem, "_blank")
+    }
+    $("#email").onclick = () => {
+        ajax = new XMLHttpRequest;
+        ajax.open('GET','./services/email.html')
+        ajax.onloadend = () => {
+            setResponse()
+            loadScript('sendEmail')
+        }
+        ajax.send()
+    }
+
+</script>
